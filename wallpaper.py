@@ -6,13 +6,13 @@ import config
 import win32gui
 
 class Wallpaper(QMainWindow,):
-    def __init__(self,width,height):
+    def __init__(self,x,y,width,height):
         super().__init__()
         self.setMaximumWidth(width)
         self.setMaximumHeight(height)
         self.setGeometry(
-            0,
-            0,
+            x,
+            y,
             width,
             height)
         self.setWindowFlag(Qt.WindowType.FramelessWindowHint)
@@ -31,8 +31,10 @@ class Wallpaper(QMainWindow,):
 
         self.show()
 
-app = QApplication(sys.argv)
+if __name__=="__main__":
+    import workerw
+    app = QApplication(sys.argv)
 
-wallpaper = Wallpaper(1920,1080)
+    wallpaper = Wallpaper(1920,1080)
 
-sys.exit(app.exec())
+    sys.exit(app.exec())

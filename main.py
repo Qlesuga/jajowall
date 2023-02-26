@@ -1,2 +1,0 @@
-import workerw
-import wallpaper
