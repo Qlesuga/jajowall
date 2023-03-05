@@ -1,7 +1,5 @@
-from PyQt6.QtWidgets import QWidget,QHBoxLayout
-from .add import Add
-from .fileExplorer import FileExplorer
-from .path import Path
+from PyQt6.QtWidgets import QWidget,QHBoxLayout, QPushButton, QLineEdit
+from PyQt6.QtGui import QIcon
 
 class AddForm(QWidget):
     def __init__(self):
@@ -10,13 +8,16 @@ class AddForm(QWidget):
         self.__layout = QHBoxLayout()
         self.setLayout(self.__layout)
 
-        self.path = Path()
+        self.path = QLineEdit()
         self.__layout.addWidget(self.path)
 
-        self.fileExplorer = FileExplorer()
+        self.fileExplorer = QPushButton()
+        self.fileExplorerIcon = QIcon("img/fileExplorer.png")
+        self.fileExplorer.setIcon(self.fileExplorerIcon)
+        self.fileExplorer.setFixedSize(24,24)
         self.__layout.addWidget(self.fileExplorer)
 
-        self.add = Add()
+        self.add = QPushButton("add")
         self.__layout.addWidget(self.add)
 
 

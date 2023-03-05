@@ -13,7 +13,6 @@ class ActionList(QWidget):
         self.monitorList = MonitorsList()
         self.__layout.addWidget(self.monitorList)
 
-
         self.refresh = Refresh()
         self.__layout.addWidget(self.refresh)
 

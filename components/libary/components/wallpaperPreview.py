@@ -11,7 +11,6 @@ class WallpaperPreview(QWidget):
         self.setLayout(self.__layout)
 
         self.setFixedSize(128,112)
-        print(path)
         self.pixmap = QPixmap(str(path)).scaledToHeight(72)
         self.preview = QLabel()
         self.preview.setPixmap(self.pixmap)
