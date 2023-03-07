@@ -15,6 +15,8 @@ class WallpaperList(QWidget):
         self.refresh()
     
     def refresh(self):
+        for i in reversed(range(self.__layout.count())): 
+            self.__layout.itemAt(i).widget().setParent(None)
         with open("config/wallpapers.json","r+") as wallpapers:
             wallpapers_json = json.load(wallpapers)
             i = 0

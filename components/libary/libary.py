@@ -29,6 +29,8 @@ class Libary(QWidget):
         self.scroll.setWidget(self.wallpaperList)
         self.__layout.addWidget(self.scroll)
 
+        self.actions.refresh.clicked.connect(self.wallpaperList.refresh)
+
         
 
         
