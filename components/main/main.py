@@ -1,6 +1,7 @@
 from PyQt6.QtWidgets import QApplication,QWidget,QHBoxLayout
 from ..libary.libary import Libary
 from ..settings.settings import Settings
+from ..wallpaperController.wallpaperController import WallpaperController
 
 class Main(QWidget):
     def __init__(self):
@@ -14,5 +15,10 @@ class Main(QWidget):
 
         self.libary = Libary()
         self.__layout.addWidget(self.libary)
+
+        self.wallpaperController = WallpaperController()
+
+        self.libary.actions.apply.clicked.connect(lambda: self.wallpaperController.setMovie(self.libary.wallpaperList.selected))
+
 
         

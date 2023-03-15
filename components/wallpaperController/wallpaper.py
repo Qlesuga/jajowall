@@ -2,10 +2,10 @@ from PyQt6.QtWidgets import QApplication, QMainWindow,QLabel
 from PyQt6.QtGui import QMovie
 from PyQt6.QtCore import Qt
 import sys
-import config
+from .workerw import workerw
 import win32gui
 
-class Wallpaper(QMainWindow,):
+class Wallpaper(QMainWindow):
     def __init__(self,x,y,width,height):
         super().__init__()
         self.setMaximumWidth(width)
@@ -23,18 +23,11 @@ class Wallpaper(QMainWindow,):
         self.label.setScaledContents(True)
         self.setCentralWidget(self.label)
 
-        self.movie = QMovie("test.gif")
-        self.label.setMovie(self.movie)
-        self.movie.start()
-
-        win32gui.SetParent(self.winId(),config.workerw)
+        win32gui.SetParent(self.winId(),workerw)
 
         self.show()
 
-if __name__=="__main__":
-    import workerw
-    app = QApplication(sys.argv)
-
-    wallpaper = Wallpaper(1920,1080)
-
-    sys.exit(app.exec())
+    def setMovie(self,path):
+        movie = QMovie(path)
+        self.label.setMovie(movie)
+        movie.start()

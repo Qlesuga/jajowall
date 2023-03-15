@@ -5,6 +5,7 @@ import json
 class WallpaperList(QWidget):
     def __init__(self):
         super().__init__()
+        self.selected = None
 
         self.__layout = QGridLayout()
         self.setLayout(self.__layout)
@@ -27,5 +28,10 @@ class WallpaperList(QWidget):
                     j+=1
                 name = wallpapers_json[id]["name"]
                 path = wallpapers_json[id]["path"]
-                self.__layout.addWidget(WallpaperPreview(name,path),j,i)
+                preview = WallpaperPreview(name,path,self)
+                self.__layout.addWidget(preview,j,i)
                 i+=1
+
+    def setSelected(self,path):
+        self.selected = path
+        print(path)
