@@ -8,6 +8,7 @@ import win32gui
 class Wallpaper(QMainWindow):
     def __init__(self,x,y,width,height):
         super().__init__()
+        self.setWindowOpacity(0)
         self.setMaximumWidth(width)
         self.setMaximumHeight(height)
         self.setGeometry(
@@ -28,6 +29,7 @@ class Wallpaper(QMainWindow):
         self.show()
 
     def setMovie(self,path):
+        self.setWindowOpacity(100)
         movie = QMovie(path)
         self.label.setMovie(movie)
         movie.start()
