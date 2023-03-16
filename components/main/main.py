@@ -19,6 +19,7 @@ class Main(QWidget):
         self.wallpaperController = WallpaperController()
 
         self.libary.actions.apply.clicked.connect(lambda: self.wallpaperController.setMovie(self.libary.wallpaperList.selected))
+        self.settings.addForm.add.clicked.connect(self.libary.wallpaperList.refresh)
 
 
         
