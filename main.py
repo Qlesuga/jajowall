@@ -18,7 +18,7 @@ class Window(QMainWindow):
 
 
 app = QApplication(sys.argv)
-\
+
 main = Window()
 
 main.show()
