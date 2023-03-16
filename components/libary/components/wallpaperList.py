@@ -2,6 +2,7 @@ from PyQt6.QtWidgets import QWidget,QGridLayout
 from PyQt6.QtCore import Qt
 from .wallpaperPreview import WallpaperPreview
 import json
+import os
 class WallpaperList(QWidget):
     def __init__(self):
         super().__init__()
@@ -18,19 +19,27 @@ class WallpaperList(QWidget):
     def refresh(self):
         for i in reversed(range(self.__layout.count())): 
             self.__layout.itemAt(i).widget().setParent(None)
-        with open("config/wallpapers.json","r+") as wallpapers:
-            wallpapers_json = json.load(wallpapers)
-            i = 0
-            j = 0
-            for id in wallpapers_json:
-                if(i%2==0):
-                    i=0
-                    j+=1
-                name = wallpapers_json[id]["name"]
-                path = wallpapers_json[id]["path"]
-                preview = WallpaperPreview(name,path,self)
-                self.__layout.addWidget(preview,j,i)
-                i+=1
+        try:
+            with open("config/wallpapers.json","r+") as wallpapers:
+                wallpapers_json = json.load(wallpapers)
+                i = 0
+                j = 0
+                for id in wallpapers_json:
+                    if(i%2==0):
+                        i=0
+                        j+=1
+                    name = wallpapers_json[id]["name"]
+                    path = wallpapers_json[id]["path"]
+                    preview = WallpaperPreview(name,path,self)
+                    self.__layout.addWidget(preview,j,i)
+                    i+=1
+        except FileNotFoundError:
+            os.makedirs("./config")
+            with open("config/wallpapers.json","w") as wallpapers:
+                wallpapers.write("{}")
+        
+
+        
 
     def setSelected(self,path):
         self.selected = path
