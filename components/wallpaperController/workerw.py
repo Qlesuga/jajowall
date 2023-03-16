@@ -1,5 +1,4 @@
 import win32gui
-import config
 
 #get progman atom
 progman = win32gui.FindWindow("Progman",None)
