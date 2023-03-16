@@ -35,24 +35,27 @@ class AddForm(QWidget):
 
     def addFileToJson(self):
         path = self.path.text()
-        if(len(path)<0):
+        if(len(path)==0):
             return
-        with open(path,'r') as f:
-            with open("config/wallpapers.json", "r+") as wallpapers:
-                wallpapers_json = json.load(wallpapers)
-                keys = list(wallpapers_json.keys())
+        try:
+            with open(path,'r') as f:
+                with open("config/wallpapers.json", "r+") as wallpapers:
+                    wallpapers_json = json.load(wallpapers)
+                    keys = list(wallpapers_json.keys())
 
-                if(len(keys)>0):
-                    id = int(keys[-1])+1
-                elif(len(keys)==0):
-                    id="0"
+                    if(len(keys)>0):
+                        id = int(keys[-1])+1
+                    elif(len(keys)==0):
+                        id="0"
 
-                wallpapers.seek(0)
-                wallpapers.truncate(0)
-                
-                newWallpaper = {id: {"name":path.split('/')[-1],"path":path}}
-                wallpapers_json.update(newWallpaper)
-                json.dump(wallpapers_json, wallpapers,indent=4)
+                    wallpapers.seek(0)
+                    wallpapers.truncate(0)
+                    
+                    newWallpaper = {id: {"name":path.split('/')[-1],"path":path}}
+                    wallpapers_json.update(newWallpaper)
+                    json.dump(wallpapers_json, wallpapers,indent=4)
+        except FileNotFoundError:
+            print(f"File Not Found: {path=}")
         self.path.setText("")
         
 
