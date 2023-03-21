@@ -1,7 +1,6 @@
-from PyQt6.QtWidgets import QApplication, QMainWindow,QLabel
-from PyQt6.QtGui import QMovie
+from PyQt6.QtWidgets import QMainWindow
 from PyQt6.QtCore import Qt
-import sys
+from .player.player import Player
 from .workerw import workerw
 import win32gui
 
@@ -18,18 +17,10 @@ class Wallpaper(QMainWindow):
             height)
         self.setWindowFlag(Qt.WindowType.FramelessWindowHint)
 
-        self.label = QLabel(self)
-        self.label.setGeometry(0,0,width,height)
-        self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.label.setScaledContents(True)
-        self.setCentralWidget(self.label)
-
         win32gui.SetParent(self.winId(),workerw)
-
         self.show()
 
     def setMovie(self,path):
         self.setWindowOpacity(100)
-        movie = QMovie(path)
-        self.label.setMovie(movie)
-        movie.start()
+        self.player = Player(path)
+        self.setCentralWidget(self.player)
