@@ -2,6 +2,8 @@ import sys
 from PyQt6.QtWidgets import QApplication,QMainWindow,QHBoxLayout
 from PyQt6.QtGui import QIcon
 from components.main.main import Main
+from config import config
+from config.settings import Settings
 
 class Window(QMainWindow):
     def __init__(self):
@@ -16,11 +18,13 @@ class Window(QMainWindow):
         self.setWindowTitle("JajoWall")
 
 
+loader = Settings()
+loader.loadSettings()
 
 app = QApplication(sys.argv)
-
 main = Window()
-
 main.show()
 
-sys.exit(app.exec())
+ret = app.exec()
+loader.saveSettings()
+sys.exit(ret)
