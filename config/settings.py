@@ -7,14 +7,14 @@ class Settings():
         try:
             with open(Settings.path,"rb")as f:
                 settings = pickle.load(f)
-            config.volume = settings["volume"]
+            config.volume.volume = settings["volumeValue"]
         except FileNotFoundError:
             self.saveSettings()
             self.loadSettings()
 
     def saveSettings(self):
         settings = {
-            "volume": config.volume
+            "volumeValue": config.volumeValue
         }
         with open(Settings.path,"wb")as f:
             settings = pickle.dump(settings,f)

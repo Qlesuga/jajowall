@@ -17,14 +17,12 @@ class Window(QMainWindow):
         self.setWindowIcon(QIcon("./img/icon.png"));
         self.setWindowTitle("JajoWall")
 
-
 loader = Settings()
 loader.loadSettings()
-
+print(config.volumeValue)
 app = QApplication(sys.argv)
 main = Window()
 main.show()
-
 ret = app.exec()
 loader.saveSettings()
 sys.exit(ret)
