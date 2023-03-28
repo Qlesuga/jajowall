@@ -3,10 +3,10 @@ from .gifPlayer import GifPlayer
 from .mediaPlayer import MediaPlayer
 
 class Player():
-    def __new__(cls,path):
+    def __new__(cls,path,size):
         exst = path.split(".")[-1]
         if(exst=="gif"):
-            player = GifPlayer(path)
+            player = GifPlayer(path,size)
         elif(exst=="mp4"):
             player = MediaPlayer(path)
             

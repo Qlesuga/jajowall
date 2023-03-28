@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import QMainWindow
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt,QSize
 from .player.player import Player
 from .workerw import workerw
 import win32gui
@@ -22,5 +22,5 @@ class Wallpaper(QMainWindow):
 
     def setMovie(self,path):
         self.setWindowOpacity(100)
-        self.player = Player(path)
+        self.player = Player(path,QSize(self.width(),self.height()))
         self.setCentralWidget(self.player)
