@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QVBoxLayout,QWidget,QLabel,QPushButton
-from PyQt6.QtGui import QPixmap
 from PyQt6.QtCore import Qt
+from .imagePreview.imagePreview import ImagePreview
 
 class WallpaperPreview(QPushButton):
     def __init__(self,name,path,controller):
@@ -12,8 +12,9 @@ class WallpaperPreview(QPushButton):
         self.setFixedSize(128,112)
         self.path = path
 
-        self.pixmap = QPixmap(str(self.path)).scaledToHeight(60)
+        self.pixmap = ImagePreview(path).scaledToHeight(60)
         self.preview = QLabel()
+
         self.preview.setPixmap(self.pixmap)
         self.preview.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.__layout.addWidget(self.preview)
