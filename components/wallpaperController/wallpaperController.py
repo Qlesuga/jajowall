@@ -1,6 +1,5 @@
 from .wallpaper import Wallpaper
 import screeninfo
-
 class WallpaperController():
     def __init__(self):
         self.wallpapers = []
