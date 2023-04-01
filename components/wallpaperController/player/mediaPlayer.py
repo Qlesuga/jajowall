@@ -4,11 +4,11 @@ from PyQt6.QtMultimedia import QMediaPlayer, QAudioOutput
 from config import config
 class MediaPlayer(QVideoWidget):
     audio = QAudioOutput()
-    def __init__(self,path):
+    def __init__(self,path: QUrl):
         super().__init__()
 
         self.player = QMediaPlayer()
-        self.player.setSource(QUrl.fromLocalFile(path))
+        self.player.setSource(path)
         self.player.setVideoOutput(self)
         self.player.setLoops(-1)
 
