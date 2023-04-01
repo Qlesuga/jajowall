@@ -34,7 +34,10 @@ class WallpaperList(QWidget):
                     self.__layout.addWidget(preview,j,i)
                     i+=1
         except FileNotFoundError:
-            os.makedirs("./config")
+            try:
+                os.makedirs("./config")
+            except FileExistsError:
+                pass
             with open("config/wallpapers.json","w") as wallpapers:
                 wallpapers.write("{}")
         
