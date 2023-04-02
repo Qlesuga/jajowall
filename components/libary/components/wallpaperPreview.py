@@ -2,9 +2,9 @@ from PyQt6.QtWidgets import QVBoxLayout,QLabel,QPushButton
 from PyQt6.QtCore import Qt
 from .imagePreview.imagePreview import ImagePreview
 from .menu import Menu
-
+import json
 class WallpaperPreview(QPushButton):
-    def __init__(self,name,path,controller):
+    def __init__(self,id,name,path,controller):
         super().__init__()
         self.id = id
 
@@ -27,6 +27,18 @@ class WallpaperPreview(QPushButton):
 
         self.clicked.connect(lambda: controller.setSelected(self.path))
 
+        self.menu = Menu()
+        self.menu.changeName.connect(self.changeName)
+
     def contextMenuEvent(self, event):
-        menu = Menu()
-        menu.exec(event.globalPos())
+        self.menu.exec(event.globalPos())
+
+    def changeName(self,name):
+        self.name.setText(name)
+        with open("config/wallpapers.json","r+") as wallpapers:
+            wallpapers_json = json.load(wallpapers)
+            wallpapers_json[self.id]["name"] = name
+
+            wallpapers.seek(0)
+            wallpapers.truncate(0)
+            json.dump(wallpapers_json, wallpapers,indent=4)

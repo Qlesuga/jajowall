@@ -30,7 +30,7 @@ class WallpaperList(QWidget):
                         j+=1
                     name = wallpapers_json[id]["name"]
                     path = wallpapers_json[id]["path"]
-                    preview = WallpaperPreview(name,path,self)
+                    preview = WallpaperPreview(id,name,path,self)
                     self.__layout.addWidget(preview,j,i)
                     i+=1
         except FileNotFoundError:
