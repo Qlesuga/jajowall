@@ -1,7 +1,7 @@
 from PyQt6.QtWidgets import QApplication,QWidget,QHBoxLayout
-from ..libary.libary import Libary
-from ..settings.settings import Settings
-from ..wallpaperController.wallpaperController import WallpaperController
+from .libary.libary import Libary
+from .settings.settings import Settings
+from .wallpaperController.wallpaperController import WallpaperController
 
 class Main(QWidget):
     def __init__(self):

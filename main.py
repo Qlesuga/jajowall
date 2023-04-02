@@ -1,7 +1,7 @@
 import sys
 from PyQt6.QtWidgets import QApplication,QMainWindow,QHBoxLayout
 from PyQt6.QtGui import QIcon
-from components.main.main import Main
+from components.main import Main
 from config import config
 from config.settings import Settings
 import winreg
