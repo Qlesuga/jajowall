@@ -29,6 +29,7 @@ class WallpaperPreview(QPushButton):
 
         self.menu = Menu()
         self.menu.changeName.connect(self.changeName)
+        self.menu.delete.connect(self.delete)
 
     def contextMenuEvent(self, event):
         self.menu.exec(event.globalPos())
@@ -38,6 +39,15 @@ class WallpaperPreview(QPushButton):
         with open("config/wallpapers.json","r+") as wallpapers:
             wallpapers_json = json.load(wallpapers)
             wallpapers_json[self.id]["name"] = name
+
+            wallpapers.seek(0)
+            wallpapers.truncate(0)
+            json.dump(wallpapers_json, wallpapers,indent=4)
+
+    def delete(self):
+        with open("config/wallpapers.json","r+") as wallpapers:
+            wallpapers_json = json.load(wallpapers)
+            del wallpapers_json[self.id]
 
             wallpapers.seek(0)
             wallpapers.truncate(0)

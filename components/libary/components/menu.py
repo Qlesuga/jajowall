@@ -5,19 +5,21 @@ from PyQt6.QtCore import pyqtSignal
 class Menu(QMenu):
 
     changeName = pyqtSignal(str)
+    delete = pyqtSignal()
 
     def __init__(self):
         super().__init__()
 
-        self.name = QAction("Change Name")
-        self.name.triggered.connect(self.__changeName)
+        self.__name = QAction("Change Name")
+        self.__name.triggered.connect(self.__changeName)
 
-        self.path = QAction("Change Path")
-        self.delete = QAction("Delete")
+        self.__path = QAction("Change Path")
+        self.__delete = QAction("Delete")
+        self.__delete.triggered.connect(self.delete.emit)
 
-        self.addAction(self.name)
-        self.addAction(self.path)
-        self.addAction(self.delete)
+        self.addAction(self.__name)
+        self.addAction(self.__path)
+        self.addAction(self.__delete)
 
     def __changeName(self):
         value, ok = QInputDialog.getText(self,"change name","name")
