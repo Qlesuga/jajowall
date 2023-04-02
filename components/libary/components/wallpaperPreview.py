@@ -14,9 +14,8 @@ class WallpaperPreview(QPushButton):
         self.setFixedSize(128,112)
         self.path = path
 
-        self.pixmap = ImagePreview(path).scaledToHeight(60)
         self.preview = QLabel()
-
+        self.refreshPath()
         self.preview.setPixmap(self.pixmap)
         self.preview.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.__layout.addWidget(self.preview)
@@ -30,6 +29,12 @@ class WallpaperPreview(QPushButton):
         self.menu = Menu()
         self.menu.changeName.connect(self.changeName)
         self.menu.delete.connect(self.delete)
+        self.menu.changePath.connect(self.changePath)
+
+
+    def refreshPath(self):
+        self.pixmap = ImagePreview(self.path).scaledToHeight(60)
+        self.preview.setPixmap(self.pixmap)
 
     def contextMenuEvent(self, event):
         self.menu.exec(event.globalPos())
@@ -51,4 +56,16 @@ class WallpaperPreview(QPushButton):
 
             wallpapers.seek(0)
             wallpapers.truncate(0)
+            json.dump(wallpapers_json, wallpapers,indent=4)
+
+    def changePath(self,path):
+        self.path = path
+        self.refreshPath()
+        with open("config/wallpapers.json","r+") as wallpapers:
+            wallpapers_json = json.load(wallpapers)
+            wallpapers_json[self.id]["path"] = path
+
+            wallpapers.seek(0)
+            wallpapers.truncate(0)
+
             json.dump(wallpapers_json, wallpapers,indent=4)

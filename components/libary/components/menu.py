@@ -6,6 +6,7 @@ class Menu(QMenu):
 
     changeName = pyqtSignal(str)
     delete = pyqtSignal()
+    changePath = pyqtSignal(str)
 
     def __init__(self):
         super().__init__()
@@ -14,6 +15,8 @@ class Menu(QMenu):
         self.__name.triggered.connect(self.__changeName)
 
         self.__path = QAction("Change Path")
+        self.__path.triggered.connect(self.__changePath)
+
         self.__delete = QAction("Delete")
         self.__delete.triggered.connect(self.delete.emit)
 
@@ -26,6 +29,11 @@ class Menu(QMenu):
         if(ok!=True):
             return
         self.changeName.emit(value)
-        
+    
+    def __changePath(self):
+        value, ok = QInputDialog.getText(self,"change path","path")
+        if(ok!=True):
+            return
+        self.changePath.emit(value)
     
 
