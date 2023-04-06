@@ -3,6 +3,7 @@ from PyQt6.QtWidgets import QWidget
 from .gifPlayer import GifPlayer
 from .mediaPlayer import MediaPlayer
 from PyQt6.QtCore import QUrl
+from components.error.errorPopup import ErrorPopup
 
 class Player():
     def __new__(cls,path,size):
@@ -18,5 +19,5 @@ class Player():
             
         try:
             return player
-        except:
-            print("Couldnt find player for this file extension")
+        except UnboundLocalError:
+            ErrorPopup("Couldnt find player for this extension")

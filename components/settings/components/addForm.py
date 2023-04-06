@@ -2,6 +2,7 @@ from PyQt6.QtWidgets import QWidget,QHBoxLayout, QPushButton, QLineEdit,QFileDia
 from PyQt6.QtGui import QIcon
 from PyQt6.QtCore import QStringListModel
 import json
+from components.error.errorPopup import ErrorPopup
 class AddForm(QWidget):
     def __init__(self):
         super().__init__()
@@ -36,6 +37,7 @@ class AddForm(QWidget):
     def addFileToJson(self):
         path = self.path.text()
         if(len(path)==0):
+            ErrorPopup("Empty path")
             return
         with open("config/wallpapers.json", "r+") as wallpapers:
             wallpapers_json = json.load(wallpapers)
