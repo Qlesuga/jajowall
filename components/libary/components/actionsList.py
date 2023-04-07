@@ -1,7 +1,7 @@
 from PyQt6.QtWidgets import QHBoxLayout,QWidget
-from .monitorsList import MonitorsList
 from .refresh import Refresh
 from .apply import Apply
+from .soundSlider import SoundSlider
 
 class ActionList(QWidget):
     def __init__(self):
@@ -10,8 +10,8 @@ class ActionList(QWidget):
         self.__layout = QHBoxLayout()
         self.setLayout(self.__layout)
 
-        self.monitorList = MonitorsList()
-        self.__layout.addWidget(self.monitorList)
+        self.soundSlider = SoundSlider()
+        self.__layout.addWidget(self.soundSlider)
 
         self.refresh = Refresh()
         self.__layout.addWidget(self.refresh)

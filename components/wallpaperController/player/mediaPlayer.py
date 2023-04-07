@@ -20,4 +20,4 @@ class MediaPlayer(QVideoWidget):
         self.player.play()
 
     def setVolume(self,volume):
-        self.audio.setVolume(config.volumeValue)
+        self.audio.setVolume(config.volumeValue/100)

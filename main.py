@@ -21,7 +21,6 @@ class Window(QMainWindow):
 
 loader = Settings()
 loader.loadSettings()
-print(config.volumeValue)
 app = QApplication(sys.argv)
 main = Window()
 main.show()

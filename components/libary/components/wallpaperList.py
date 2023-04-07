@@ -47,4 +47,4 @@ class WallpaperList(QWidget):
 
     def setSelected(self,path):
         self.selected = path
-        print(path)
+        

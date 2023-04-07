@@ -30,4 +30,3 @@ def get_workerw(tophandle, topparamhandle):
 
 #loop over windows using "get_workerw" function
 win32gui.EnumWindows(get_workerw, 0)
-print(workerw)
