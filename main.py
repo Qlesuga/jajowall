@@ -10,7 +10,7 @@ import ctypes
 class Window(QMainWindow):
     def __init__(self):
         super().__init__()
-
+        config.parentDir = __file__
         self.main = Main()
 
         self.setCentralWidget(self.main)
