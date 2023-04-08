@@ -6,9 +6,19 @@ class Settings():
     def loadSettings(self):
         try:
             with open(Settings.path,"rb")as f:
-                settings = pickle.load(f)
-            config.volume.volume = settings["volumeValue"]
-            config.autostart = settings["autostart"]
+                try:
+                    settings = pickle.load(f)
+                except (EOFError,pickle.UnpicklingError):
+                    self.saveSettings()
+                else:
+                    try:
+                        config.volume.volume = settings["volumeValue"]
+                    except KeyError:
+                        pass
+                    try:
+                        config.autostart = settings["autostart"]
+                    except KeyError:
+                        pass
         except FileNotFoundError:
             self.saveSettings()
             self.loadSettings()
