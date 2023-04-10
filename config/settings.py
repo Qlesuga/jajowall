@@ -1,8 +1,8 @@
 from . import config
 import pickle
-
+import os
 class Settings():
-    path = "config/settings.pckl"
+    path = "./config/settings.pckl"
     def loadSettings(self):
         try:
             with open(Settings.path,"rb")as f:
@@ -28,5 +28,9 @@ class Settings():
             "volumeValue": config.volumeValue,
             "autostart": config.autostart
         }
+        try:
+            os.makedirs("./config")
+        except FileExistsError:
+            pass
         with open(Settings.path,"wb")as f:
             settings = pickle.dump(settings,f)

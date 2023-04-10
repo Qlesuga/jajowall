@@ -3,6 +3,8 @@ from PyQt6.QtGui import QIcon
 from PyQt6.QtCore import QStringListModel
 import json
 from components.error.errorPopup import ErrorPopup
+from config import config
+
 class AddForm(QWidget):
     def __init__(self):
         super().__init__()
@@ -14,7 +16,7 @@ class AddForm(QWidget):
         self.__layout.addWidget(self.path)
 
         self.fileExplorer = QPushButton()
-        self.fileExplorerIcon = QIcon("img/fileExplorer.png")
+        self.fileExplorerIcon = QIcon(config.basePath+"img/fileExplorer.png")
         self.fileExplorer.setIcon(self.fileExplorerIcon)
         self.fileExplorer.setFixedSize(24,24)
         self.fileExplorer.clicked.connect(self.getFile)

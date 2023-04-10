@@ -16,7 +16,7 @@ class Window(QMainWindow):
         self.setCentralWidget(self.main)
 
         self.setFixedSize(600,400)
-        self.setWindowIcon(QIcon("./img/icon.png"));
+        self.setWindowIcon(QIcon(config.basePath+"img/icon.png"));
         self.setWindowTitle("JajoWall")
 
 loader = Settings()
