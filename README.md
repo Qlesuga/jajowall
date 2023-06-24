@@ -15,4 +15,6 @@
 ## [ToDo List](https://github.com/users/Qlesuga/projects/1)
 
 ## Bug? Improvments? Ideas?
-If you have any of those you can use [issues tab](https://github.com/Qlesuga/jajowall/issues) above
+~~If you have any of those you can use [issues tab](https://github.com/Qlesuga/jajowall/issues) above~~
+<br>
+I stopped working on it
